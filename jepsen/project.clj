@@ -7,7 +7,7 @@
                  [clj-time "0.6.0"]
                  [knossos "0.2.1"]
                  [clj-ssh "0.5.7"]
-                 [gnuplot "0.1.0"]
+;                 [gnuplot "0.1.0"]
                  [hiccup "1.0.5"]
                  [org.clojars.achim/multiset "0.1.0"]
                  [org.clojure/tools.cli "0.2.2"]
@@ -37,6 +37,10 @@
                     [[verschlimmbesserung "0.1.1"]]
                     :source-paths ["etcd/src"]
                     :test-paths ["etcd/test"]}
+             :rethinkdb {:dependencies
+                    [[rethinkdb "0.6.39"]]
+                    :source-paths ["rethinkdb/src"]
+                    :test-paths ["rethinkdb/test"]}
              :datomic {:dependencies
                        [[com.datomic/datomic-pro "0.9.4707"
                          :exclusions [org.apache.httpcomponents/httpclient
