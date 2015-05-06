@@ -1,5 +1,5 @@
-(ns jepsen.system.etcd-test
-  (:use jepsen.system.etcd
+(ns jepsen.system.rethinkdb-test
+  (:use jepsen.system.rethinkdb
         jepsen.core
         jepsen.tests
         clojure.test
