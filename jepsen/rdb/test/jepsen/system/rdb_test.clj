@@ -1,5 +1,5 @@
-(ns jepsen.system.rethinkdb-test
-  (:use jepsen.system.rethinkdb
+(ns jepsen.system.rdb-test
+  (:use jepsen.system.rdb
         jepsen.core
         jepsen.tests
         clojure.test
@@ -19,7 +19,7 @@
   (let [test (run!
                (assoc
                  noop-test
-                 :name      "rethinkdb"
+                 :name      "rdb"
                  :os        debian/os
                  :db        (db)
                  :client    (cas-client)

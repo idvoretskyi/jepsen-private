@@ -37,10 +37,12 @@
                     [[verschlimmbesserung "0.1.1"]]
                     :source-paths ["etcd/src"]
                     :test-paths ["etcd/test"]}
-             :rethinkdb {:dependencies
-                    [[rethinkdb "0.6.39"]]
-                    :source-paths ["rethinkdb/src"]
-                    :test-paths ["rethinkdb/test"]}
+             :rdb {:dependencies
+                    [[rethinkdb "0.6.39"]
+                     [slingshot "0.12.2"]
+                     [cheshire "5.4.0"]]
+                    :source-paths ["rdb/src"]
+                    :test-paths ["rdb/test"]}
              :datomic {:dependencies
                        [[com.datomic/datomic-pro "0.9.4707"
                          :exclusions [org.apache.httpcomponents/httpclient
@@ -57,3 +59,8 @@
   :jvm-opts ["-Xmx32g" "-XX:+UseConcMarkSweepGC" "-XX:+UseParNewGC"
              "-XX:+CMSParallelRemarkEnabled" "-XX:+AggressiveOpts"
              "-XX:+UseFastAccessorMethods" "-server"])
+
+
+
+
+

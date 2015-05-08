@@ -1,4 +1,4 @@
-(ns jepsen.system.etcd
+(ns jepsen.system.rdb
   (:require [clojure.tools.logging    :refer [debug info warn]]
             [clojure.java.io          :as io]
             [clojure.string           :as str]
@@ -16,8 +16,8 @@
             [knossos.core             :as knossos]
             [cheshire.core            :as json]
             [slingshot.slingshot      :refer [try+]]
-            [rethinkdb.core :refer [connect close]])
-            [rethinkdb.query :as r])
+            [rethinkdb.core :refer [connect close]]
+            [rethinkdb.query :as r]))
 
 (def binary "/usr/bin/rethinkdb")
 (def pidfile "/var/run/rethinkdb.pid")
@@ -36,7 +36,7 @@
 
 (defn start-rethinkdb!
   [test node]
-  (info node "starting rethinkdb")
+  (info node "starting rethinkdb"))
   ;(c/exec binary
   ;        :-d data-dir
   ;        :--server-name (name node)
@@ -51,19 +51,20 @@
       (setup! [this test node]
 ;        (c/su
 ;            ; Launch servers TODO!)
-;  
-        (info node "etcd ready")
+;
+        (info node "rethinkdb ready"))
 
       (teardown! [_ test node]
 ;        (c/su
 ;          (meh (c/exec :killall :-9 :rethinkdb))
 ;          (c/exec :rm :-rf pidfile data-dir log-file))
+
         (info node "rethinkdb nuked")))))
 
 (defrecord CASClient [k client]
   client/Client
   (setup! [this test node]
-    (let [client (connect :host (name node) :port 28038))]
+    (let [client (connect :host (name node) :port 28038)]
       (-> (r/table-create "cas") (r/run client))
       (-> (r/table "cas") (r/insert {:id k :val nil}) (r/run client))
       (assoc this :client client)))
